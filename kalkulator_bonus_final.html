@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator Bonus April 💰 — WINK Smart Learning</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f5f5f0; padding: 20px; font-family: 'Noto Sans', sans-serif; max-width: 560px; margin: 0 auto; }
+  .wrap { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.10); }
+
+  .header { text-align: center; padding: 20px; background: linear-gradient(135deg, #BA7517 0%, #EF9F27 50%, #BA7517 100%); }
+  .header-title { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .header-period { display: inline-block; background: rgba(255,255,255,0.25); color: #fff; font-size: 12px; font-weight: 600; padding: 4px 14px; border-radius: 20px; margin-bottom: 6px; }
+  .header-sub { font-size: 12px; color: #FAEEDA; }
+
+  .body { padding: 18px; }
+
+  .block { background: #f8f7f4; border: 1px solid #e8e8e2; border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+  .block-title { font-size: 14px; font-weight: 700; color: #333; margin-bottom: 4px; }
+  .block-sub { font-size: 11px; color: #999; margin-bottom: 14px; }
+
+  .level-strip { display: flex; gap: 4px; margin-bottom: 14px; }
+  .lv { flex: 1; text-align: center; padding: 8px 3px; border-radius: 8px; border: 1px solid #e0e0d8; background: #fff; transition: all 0.15s; }
+  .lv.active { border: 2px solid #EF9F27; background: #FAEEDA; }
+  .lv-ico { font-size: 16px; }
+  .lv-n { font-size: 10px; color: #999; margin-top: 2px; }
+  .lv-a { font-size: 11px; font-weight: 600; color: #444; }
+  .lv.active .lv-a { color: #854F0B; }
+
+  .big-ctrl { display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 10px; }
+  .btn-big { width: 38px; height: 38px; border-radius: 50%; border: 1px solid #ddd; background: #fff; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #444; transition: all 0.15s; }
+  .btn-big:hover { background: #FAEEDA; border-color: #EF9F27; }
+  .big-val { font-size: 34px; font-weight: 700; color: #333; min-width: 40px; text-align: center; }
+  .base-label { text-align: center; font-size: 12px; color: #999; margin-bottom: 4px; }
+  .base-result { text-align: center; font-size: 24px; font-weight: 700; color: #854F0B; }
+
+  .row { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #e8e8e2; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+  .row:last-child { margin-bottom: 0; }
+  .row-info { flex: 1; }
+  .row-name { font-size: 13px; font-weight: 600; color: #333; }
+  .row-tag { font-size: 11px; color: #854F0B; background: #FAEEDA; border-radius: 4px; padding: 1px 6px; display: inline-block; margin-top: 3px; }
+  .ctrl { display: flex; align-items: center; gap: 8px; }
+  .btn-s { width: 30px; height: 30px; border-radius: 50%; border: 1px solid #ddd; background: #f5f5f0; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #444; transition: all 0.15s; }
+  .btn-s:hover { background: #FAEEDA; border-color: #EF9F27; }
+  .ctrl-v { font-size: 16px; font-weight: 700; color: #333; min-width: 24px; text-align: center; }
+  .row-sub { font-size: 13px; font-weight: 700; color: #854F0B; min-width: 85px; text-align: right; }
+
+  .result-card { background: #fff; border: 2px solid #EF9F27; border-radius: 14px; padding: 16px; }
+  .rline { display: flex; justify-content: space-between; font-size: 13px; color: #888; padding: 6px 0; border-bottom: 1px solid #f0f0ec; }
+  .rline:last-of-type { border-bottom: none; }
+  .rline .amt { font-weight: 700; color: #444; }
+  .rline.plus .amt { color: #854F0B; }
+  .rtotal-label { font-size: 12px; color: #999; text-align: center; margin: 12px 0 4px; }
+  .rtotal { font-size: 36px; font-weight: 700; color: #854F0B; text-align: center; }
+  .rmsg { text-align: center; font-size: 12px; color: #aaa; margin-top: 6px; padding-bottom: 2px; }
+
+  .footer { text-align: center; padding: 12px; background: #f8f7f4; border-top: 1px solid #eee; }
+  .footer-text { font-size: 10px; color: #999; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="header-period">📅 28 April — 30 April 2025</div>
+    <div class="header-title">🧮 Kalkulator Bonus April 💰</div>
+    <div class="header-sub">Masukkan closing kamu — bonus langsung terhitung otomatis!</div>
+  </div>
+
+  <div class="body">
+
+    <div class="block">
+      <div class="block-title">① Bonus Utama — Closing Lunas</div>
+      <div class="block-sub">Jumlah closing lunas menentukan level bonusmu</div>
+      <div class="level-strip">
+        <div class="lv" id="lv1"><div class="lv-ico">🥉</div><div class="lv-n">1</div><div class="lv-a">40K</div></div>
+        <div class="lv" id="lv2"><div class="lv-ico">🥈</div><div class="lv-n">2</div><div class="lv-a">100K</div></div>
+        <div class="lv" id="lv3"><div class="lv-ico">🥇</div><div class="lv-n">3</div><div class="lv-a">190K</div></div>
+        <div class="lv" id="lv4"><div class="lv-ico">💎</div><div class="lv-n">4</div><div class="lv-a">320K</div></div>
+        <div class="lv" id="lv5"><div class="lv-ico">👑</div><div class="lv-n">5</div><div class="lv-a">500K</div></div>
+        <div class="lv" id="lv6"><div class="lv-ico">⚡</div><div class="lv-n">6+</div><div class="lv-a">∞</div></div>
+      </div>
+      <div class="big-ctrl">
+        <button class="btn-big" onclick="chgBase(-1)">−</button>
+        <div class="big-val" id="base-cnt">0</div>
+        <button class="btn-big" onclick="chgBase(1)">+</button>
+      </div>
+      <div class="base-label">Bonus closing utama</div>
+      <div class="base-result" id="base-bonus">Rp 0</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">② Bonus Tambahan — Per Tenor Kontrak</div>
+      <div class="block-sub">Masukkan jumlah closing per tenor untuk bonus tambahan</div>
+      <div class="row">
+        <div class="row-info"><div class="row-name">🗓️ 3 Bulan</div><div class="row-tag">+Rp 10.000/closing</div></div>
+        <div class="ctrl"><button class="btn-s" onclick="chgAdd('a3',-1)">−</button><div class="ctrl-v" id="val-a3">0</div><button class="btn-s" onclick="chgAdd('a3',1)">+</button></div>
+        <div class="row-sub" id="sub-a3">Rp 0</div>
+      </div>
+      <div class="row">
+        <div class="row-info"><div class="row-name">📅 6 Bulan</div><div class="row-tag">+Rp 20.000/closing</div></div>
+        <div class="ctrl"><button class="btn-s" onclick="chgAdd('a6',-1)">−</button><div class="ctrl-v" id="val-a6">0</div><button class="btn-s" onclick="chgAdd('a6',1)">+</button></div>
+        <div class="row-sub" id="sub-a6">Rp 0</div>
+      </div>
+      <div class="row">
+        <div class="row-info"><div class="row-name">🗒️ 1 Tahun Lunas</div><div class="row-tag">+Rp 50.000/closing</div></div>
+        <div class="ctrl"><button class="btn-s" onclick="chgAdd('a12',-1)">−</button><div class="ctrl-v" id="val-a12">0</div><button class="btn-s" onclick="chgAdd('a12',1)">+</button></div>
+        <div class="row-sub" id="sub-a12">Rp 0</div>
+      </div>
+      <div class="row">
+        <div class="row-info"><div class="row-name">💎 2 Tahun Lunas</div><div class="row-tag">+Rp 100.000/closing</div></div>
+        <div class="ctrl"><button class="btn-s" onclick="chgAdd('a24',-1)">−</button><div class="ctrl-v" id="val-a24">0</div><button class="btn-s" onclick="chgAdd('a24',1)">+</button></div>
+        <div class="row-sub" id="sub-a24">Rp 0</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">③ Closing DP — Rp 10.000/closing</div>
+      <div class="block-sub">Closing DP dihitung terpisah, tidak masuk hitungan level</div>
+      <div class="row">
+        <div class="row-info"><div class="row-name">💵 Jumlah Closing DP</div><div class="row-tag">Rp 10.000/closing (diluar level)</div></div>
+        <div class="ctrl"><button class="btn-s" onclick="chgAdd('dp',-1)">−</button><div class="ctrl-v" id="val-dp">0</div><button class="btn-s" onclick="chgAdd('dp',1)">+</button></div>
+        <div class="row-sub" id="sub-dp">Rp 0</div>
+      </div>
+    </div>
+
+    <div class="result-card">
+      <div class="rline"><span>① Bonus closing utama</span><span class="amt" id="r-base">Rp 0</span></div>
+      <div class="rline plus"><span>② Bonus tambahan tenor</span><span class="amt" id="r-add">+ Rp 0</span></div>
+      <div class="rline plus"><span>③ Bonus DP</span><span class="amt" id="r-dp">+ Rp 0</span></div>
+      <div class="rtotal-label">💰 Total bonus kamu bulan ini</div>
+      <div class="rtotal" id="r-total">Rp 0</div>
+      <div class="rmsg" id="r-msg">Masukkan closing untuk lihat bonusmu 🔥</div>
+    </div>
+
+  </div>
+  <div class="footer">
+    <div class="footer-text">✦ WINK Smart Learning Indonesia · Periode: 28–30 April 2025 ✦</div>
+  </div>
+</div>
+
+<script>
+  let baseCnt = 0;
+  const av = { a3:0, a6:0, a12:0, a24:0, dp:0 };
+  const aBonus = { a3:10000, a6:20000, a12:50000, a24:100000 };
+  const lvMap = [0,40000,100000,190000,320000,500000];
+
+  function fmt(n) { return 'Rp ' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.'); }
+
+  function getLvBonus(t) {
+    if(t<=0) return 0;
+    if(t>=6) return 500000+(t-5)*200000;
+    return lvMap[t];
+  }
+
+  function chgBase(d) { baseCnt = Math.max(0, baseCnt+d); update(); }
+  function chgAdd(k,d) { av[k] = Math.max(0, av[k]+d); update(); }
+
+  function update() {
+    document.getElementById('base-cnt').textContent = baseCnt;
+    const baseB = getLvBonus(baseCnt);
+    document.getElementById('base-bonus').textContent = fmt(baseB);
+
+    for(let i=1;i<=6;i++) document.getElementById('lv'+i).classList.remove('active');
+    if(baseCnt>=1) document.getElementById('lv'+Math.min(baseCnt,6)).classList.add('active');
+
+    let addB = 0;
+    ['a3','a6','a12','a24'].forEach(k => {
+      document.getElementById('val-'+k).textContent = av[k];
+      const sub = av[k] * aBonus[k];
+      addB += sub;
+      document.getElementById('sub-'+k).textContent = sub>0 ? fmt(sub) : 'Rp 0';
+    });
+
+    const dpB = av.dp * 10000;
+    document.getElementById('val-dp').textContent = av.dp;
+    document.getElementById('sub-dp').textContent = dpB>0 ? fmt(dpB) : 'Rp 0';
+
+    const grand = baseB + addB + dpB;
+    document.getElementById('r-base').textContent = fmt(baseB);
+    document.getElementById('r-add').textContent = '+ ' + fmt(addB);
+    document.getElementById('r-dp').textContent = '+ ' + fmt(dpB);
+    document.getElementById('r-total').textContent = fmt(grand);
+
+    const msgs = [
+      'Masukkan closing untuk lihat bonusmu 🔥',
+      'Bagus! Terus semangat! 💪',
+      'Sudah 2 closing! Lanjutkan! 🏃',
+      'Champion tercapai! 🥇',
+      'Tinggal 1 lagi untuk Legend! 💎',
+      'LEGEND tercapai! Luar biasa! 👑🎉',
+      'Unlimited! Jangan berhenti! ⚡'
+    ];
+    document.getElementById('r-msg').textContent = msgs[Math.min(baseCnt,6)];
+  }
+</script>
+</body>
+</html>
